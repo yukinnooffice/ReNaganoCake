@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html　lang="en">
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+
+
+  <body>
+    <header class="navbar navbar-fixed-top" >
+      <div class="container">
+      <!-- adminログイン後ヘッダー -->
+      <% if admin_signed_in? %>
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="nav-item">
+              <%= link_to "NAGANOCAKE ADMIN", admins_home_path %>
+            </li>
+            <li class="nav-item search">
+              <%= render 'admins/products/search_box_admin' %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <%= link_to "PRODUCTS", admins_products_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "CUSTOMERS", admins_customers_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ORDERS", admins_order_items_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "GENRES", admins_genres_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete,class:"fas fa-sign-out-alt"%>
+            </li>
+          </ul>
+        </nav>
+
+      <!-- カスタマーログイン後 -->
+      <% elsif customer_signed_in? %>
+      <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="nav-item">
+              <%= link_to "NAGANOCAKE", root_path %>
+            </li>
+            <li class="nav-item search">
+            <%= render 'products/search_box_customer' %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-comment">Thanks for coming!
+             <%= current_customer.last_name.to_s + " " +current_customer.first_name.to_s %>さん！
+            </li>
+            <li class="nav-item">
+              <%= link_to "MYPAGE", customer_path(current_customer) ,class:"fas fa-house-user"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "MENU", products_path ,class:"fas fa-birthday-cake"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "CRAT", cart_items_path, class:"fas fa-cart-plus"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "LOGOUT", destroy_customer_session_path, method: :delete ,class:"fas fa-sign-out-alt"%>
+            </li>
+          </ul>
+        </nav>
+
+      <% else %>
+         <!-- adminログイン前ヘッダー ＝ カスタマーログイン前 -->
+       <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="nav-item logo">
+              <%= link_to "NAGANOCAKE", root_path %>
+            </li>
+            <li class="nav-item search">
+              <%= render 'products/search_box_customer' %>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <%= link_to " ", new_admin_session_path %>
+            </li>
+            <li class="nav-comment" >
+             　Thank you for stopping in!
+            </li>
+            <li class="nav-item">
+              <%= link_to "ABOUT", products_about_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "MENU", products_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "SIGNUP", new_customer_registration_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "LOGIN", new_customer_session_path %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
+      </div>
+    </header>
+    <main class="container">
+    <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-info">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+        <%= yield %>
+    </main>
+    <footer>
+    <p class="footer-text">© All Rights Reserved By GUNDUM.<i class="fas fa-robot"></i>
+  </footer>
+  </body>
+</html>

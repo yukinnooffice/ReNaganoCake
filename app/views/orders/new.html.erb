@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+			<div class="title-box">
+				<h4 class="Menu">注文情報入力</h4>
+			</div>
+
+			<%= form_with(model: @order, local: true, url: {action: 'comfirm'}) do |f| %>
+
+			<h3>支払方法</h3>
+
+			<div class="radio-button">
+				<%= f.radio_button :how_to_pay, :クレジットカード, checked: true %>
+				<%= f.label :how_to_pay, "クレジットカード", {value: :クレジットカード, style: "display: inline-block;"} %>
+			</div>
+
+			<div class="radio-button">
+				<%= f.radio_button :how_to_pay, :銀行振込 %>
+				<%= f.label :how_to_pay, "銀行振込", {value: :銀行振込, style: "display: inline-block;"} %>
+			</div>
+
+
+			<h3>お届け先</h3>
+
+			<div class="radio-button">
+				<%= f.radio_button :select_address, :customer_address, checked: true %>
+				<%= f.label :select_address, "ご自身の住所", {value: :customer_address, style: "display: inline-block;"} %>
+				<div class="radio-button-text"><%= @customer.zipcode %> <%= @customer.address %><br>
+					<%= @customer.last_name %><%= @customer.first_name %>
+				</div>
+			</div>
+
+			<div class="radio-button">
+				<%= f.radio_button :select_address, :deliverey_address %>
+				<%= f.label :select_address, "登録済住所から選択", {value: :deliverey_address, style: "display: inline-block;"} %>
+				<div class="radio-button-text">
+					<%= collection_select(:select_delivery, :id, current_customer.addresses, :id, :full_address) %>
+				</div>
+			</div>
+
+
+			<div class="radio-button">
+				<%= f.radio_button :select_address, :new_deliverey_address %>
+				<%= f.label :select_address, "新しいお届け先", {value: :new_deliverey_address, style: "display: inline-block;"} %>
+				<div class="radio-button-text">
+					<div class="field">
+						<%= f.label :new_postal_code, "郵便番号（ハイフンなし）" %>
+						<%= f.text_field :new_zipcode, autofocus: true, :placeholder => "半角数字,ハイフンなし" %>
+					</div>
+
+					<div class="field">
+						<%= f.label :new_address, "住所　　　　　　　　　　" %>
+						<%= f.text_field :new_address, autofocus: true, :placeholder => "東京都千代田区永田町1丁目7-1", :size=>"40x10" %>
+					</div>
+
+					<div class="field">
+						<%= f.label :new_name, "宛名　　　　　　　　　　" %>
+						<%= f.text_field :new_name, autofocus: true, :placeholder => "山田太郎" %>
+					</div>
+				</div>
+			</div>
+
+			<%= f.submit "確認画面へ進む", class: "btn btn-primary col-xs-2 col-xs-offset-5" %>
+
+			<% end %>
+		    <div class="col-md-2">
+            </div>
+	   </div>
+	</div>
+</div>

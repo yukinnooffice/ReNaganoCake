@@ -1,0 +1,27 @@
+<div class = "row admins products_edit_main">
+  <h4 class="Menu">商品編集</h4>
+  <%= form_for (@product), url: admins_product_path(@product), method: :patch do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class = "col-md-4 admins products_edit_image">
+      <%= attachment_image_tag @product, :image, size: "300x300", format: 'jpeg', fallback: "no-data.jpg", size: "300x300" %><br><br>
+      <%= f.attachment_field :image %>
+    </div>
+
+    <div class="col-md-8 admins products_edit_image_information">
+      <h4>商品名</h4>
+        <%= f.text_field :name %>
+      <h4>商品説明</h4>
+        <%= f.text_area :introduction %>
+      <h4>ジャンル</h4>
+        <%= f.select :genre_id, Genre.all.map {|genre| [genre.genre_name, genre.id ] } %>
+      <h4>税抜価格</h4>
+        <%= f.text_field :price %> 円
+      <h4>販売ステータス</h4>
+        <%= f.select :status, {"販売中" => "true", "販売中止"=> "false"} %><br><br>
+      <div class="button">
+        <%= f.submit '変更を保存' %>
+      </div><br>
+    </div>
+  <% end %>
+
+</div>

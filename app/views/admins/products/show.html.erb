@@ -1,0 +1,39 @@
+<div class = "row admins products_show_main">
+<h4 class="Menu">商品詳細</h4>
+
+  <div class="col-md-4 admins product_show_image">
+    <%= attachment_image_tag @product, :image, size: "300x300", format: 'jpeg', fallback: "no-data.jpg", size: "300x300" %>
+  </div>
+
+  <div class="col-md-8 admins product_show_information">
+    <div class="row">
+      <h4 class="col-md-4">商品名</h4>
+        <span class="col-md-8 product_show"><%= @product.name %></span>
+    </div>
+    <div class="row">
+    <h4 class="col-md-4">商品説明</h4>
+      <span class="col-md-8 product_show"><%= @product.introduction %></span>
+    </div>
+    <div class="row">
+    <h4 class="col-md-4">ジャンル</h4>
+      <span class="col-md-8 product_show"><%= @product.genre.genre_name %></span>
+    </div>
+    <div class="row">
+    <h4 class="col-md-4">税込価格 (税抜価格)</h4>
+      <span class="col-md-8 product_show"><%= @product.tax_price.to_s(:delimited) %>(<%= (@product.price).to_s(:delimited) %>) 円</span>
+    </div>
+    <div class="row">
+    <h4 class="col-md-4">販売ステータス</h4>
+    <span class="col-md-8 product_show">
+      <% if @product.status? %>
+        販売中
+      <% else %>
+        売切れ
+      <% end %>
+    </span>
+    <div>
+      <%= link_to "編集", edit_admins_product_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-offset-1">
+  	<div class="col-xs-11">
+	<h4 class="Menu">ORDER </h4>
+
+	<h3>本日の注文件数 <%= link_to admins_order_items_path(created_at: Date.current) do %>
+		  <%= Order.where("DATE(created_at) = '#{Date.current}'").count %>
+		  <% end %>件
+	</h3>
+	<h3>未完了の注文件数 <%= link_to admins_order_items_path do %>
+		  <%= Order.where.not(order_status: 4).count %><% end %>
+		件
+	</h3>
+
+	</div>
+  </div>
+</div>

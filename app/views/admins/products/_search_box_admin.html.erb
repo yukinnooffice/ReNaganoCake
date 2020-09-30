@@ -1,0 +1,9 @@
+<% if admin_signed_in? %>
+  <div class="search-form">
+  	<%= form_tag(admins_search_path, :method => "get") do %>
+  	  <%= text_field_tag :search, "", class: "search-box" %>
+      <%= select_tag :model, options_for_select({商品: :product, お客様: :customer}) %>
+	  <%= submit_tag " 検索 ", :name => nil %>
+    <% end %>
+  </div>
+<% end %>

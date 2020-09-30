@@ -1,0 +1,31 @@
+<div class="row products">
+	<div class="col-md-2 genre-form">
+	<%= render 'products/genres-search', genres: @genres %>
+	</div>
+	<div class="col-md-10">
+			<div class="row">
+			  	<% if params[:genre_id] %>
+			  		<h4 class="Menu"><%= @genre.genre_name %><%= @products.count %>件</h4>
+			  	<% else %>
+			    	<h4 class="Menu">MENU全<%= @products.count %>件</h4>
+			    <% end %>
+	    	</div>
+	 		<% @products.each do |product| %>
+
+		    	<div class="col-md-3">
+
+		      	<%= link_to product_path(product) do %>
+			      	<%= attachment_image_tag product, :image, :fill, 200, 200, fallback: "no-data.jpg", size:"200x200", class: "img-thumbnail" %>
+			        <p class="price"><%= product.name.truncate(12, omission: '...') %></p>
+	            <% end %>
+		        <p class="price">
+		            <% if product.status == false %>
+			          売切れ
+			      	<% else %>
+			      	    <%= product.price %>円(+税)
+			        <% end %>
+			    </p>
+		    </div>
+		<% end %>
+    </div>
+</div>

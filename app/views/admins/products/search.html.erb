@@ -1,0 +1,66 @@
+<% if @model == "customer" %>
+  <% if @customers.present? %>
+    <table class="table table-sm customer-index">
+    <thead class="thead-light">
+  	  <th>会員ID</th>
+  	  <th>氏名</th>
+  	  <th>メールアドレス</th>
+  	  <th>ステータス</th>
+    </thead>
+
+    <tbody>
+  	  <% @customers.each do |customer| %>
+	  <tr>
+	  	<td><%= customer.id %></td>
+	  	<td><%= link_to customer.last_name.to_s + customer.first_name.to_s, admins_customer_path(customer) %></td>
+	  	<td><%= customer.email %></td>
+	  	<td>
+	  	　<% if customer.customer_status %>
+  		    有効会員
+  	      <% else %>
+  		    無効会員
+  	      <% end %>
+	  	</td>
+	  </tr>
+	  <% end %>
+	</tbody>
+	</table>
+  <% else %>
+  <h2>customers search for " <%= params[:search] %> "</h2>
+	  ・該当のユーザーはいません
+  <% end %>
+<% elsif @model == "product" %>
+  <% if @products.present? %>
+    <table class = "table">
+      <thead>
+    	<tr>
+		  <th>商品ID</th>
+		  <th>商品名</th>
+		  <th>税抜価格</th>
+		  <th>ジャンル</th>
+		  <th>ステータス</th>
+    	</tr>
+      </thead>
+      <tbody>
+      	<% @products.each do |product| %>
+    	<tr>
+		  <td><%= product.id %></td>
+		  <td><%= link_to product.name, admins_product_path(product) %></td>
+		  <td><%= (product.price).to_s(:delimited) %> 円</td>
+		  <td><%= product.genre.genre_name %></td>
+    	  <td>
+    		<% if product.status? %>
+              販売中
+            <% else %>
+              売切れ
+            <% end %>
+    	  </td>
+    	</tr>
+      	<% end %>
+      </tbody>
+	</table>
+  <% else %>
+    <h2>products search for " <%= params[:search] %> "</h2>
+      ・該当の商品はありません
+    <% end %>
+<% end %>

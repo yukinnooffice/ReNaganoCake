@@ -1,0 +1,13 @@
+
+<% if model.errors.any? %>
+  <div class = "row" style="margin-bottom: 30px">
+	  <div class = "error">
+	        <ul>
+	            <% model.errors.full_messages.each do |message| %>
+	               <li><%= message %></li>
+	            <% end %>
+	        </ul>
+	    </div>
+  </div>
+<% end %>
+

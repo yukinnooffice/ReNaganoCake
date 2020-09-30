@@ -1,0 +1,38 @@
+<div class = "row">
+    <div class="col-xs-12 admins  products_index_main">
+      <h4 class="Menu">商品一覧</h4>
+    	<%= link_to new_admins_product_path do %>
+          <i class="glyphicon glyphicon-plus-sign icon" style = "font-size: 15px">新商品登録</i>
+        <% end %>
+
+    	<table class = "table">
+	      <thead>
+	    	<tr>
+    		  <th class="col-xs-1">商品ID</th>
+    		  <th class="col-xs-6">商品名</th>
+    		  <th class="col-xs-2">税抜価格</th>
+    		  <th class="col-xs-2">ジャンル</th>
+    		  <th class="col-xs-1">ステータス</th>
+	    	</tr>
+	      </thead>
+	      <tbody>
+	      	<% @products.each do |product| %>
+	    	<tr>
+    		  <td><%= product.id %></td>
+    		  <td><%= link_to product.name, admins_product_path(product) %></td>
+    		  <td><%= (product.price).to_s(:delimited) %> 円</td>
+    		  <td><%= product.genre.genre_name %></td>
+	    	  <td>
+	    		<% if product.status? %>
+                  販売中
+                <% else %>
+                  売切れ
+                <% end %>
+	    	  </td>
+	    	</tr>
+	      <% end %>
+	      </tbody>
+    	</table>
+    </div>
+</div>
+<%= paginate @products %>

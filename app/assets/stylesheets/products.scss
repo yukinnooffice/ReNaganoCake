@@ -1,0 +1,112 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//　customer product top --------------------------------------------
+
+.products a{
+  text-decoration: none;
+  text-align:center;
+  font-size: 30px;
+  border-bottom: dotted 3px #CC9966;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 30px;
+  letter-spacing: 1.5px;
+}
+#container{
+  height: 400px;
+}
+
+.image1 {
+ background-image: url(deva-williamson-S2jw81lfrG0-unsplash.jpg);
+}
+.image2 {
+ background-image: url(henry-be-_y5CCcYWTjU-unsplash.jpg);
+}
+.image3 {
+ background-image: url(julie-johnson-OLoq19jOd9g-unsplash.jpg);
+}
+.image4 {
+ background-image: url(mike-meeks-zk-fclJdGas-unsplash.jpg);
+}
+.image5 {
+ background-image: url(macaroons-2178371_1920.jpg);
+
+}
+.top-text-box {
+text-align:center;
+color: #18528f;
+}
+.Menu{
+font-family: inherit;
+text-align:center;
+font-size: 30px;
+border-bottom: dotted 3px #CC9966;
+}
+.genre-form{
+  text-decoration: none;
+  font-family: fantasy;
+  color: black;
+  font-size:20px;
+}
+
+.main-visual-text{
+  font-family: 'Pacifico', cursive;
+  text-align:center;
+  color :rgba(255, 255, 255, 0.5);
+  font-size:90px;
+
+}
+
+.item-image{
+  border-radius: 20%;
+}
+
+.products-img :after{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 70px;
+  height: auto;
+  background: red;
+  content: "New";
+  text-align: center;
+  color: #fff;
+  font-family: 'Arial';
+  font-weight: bold;
+  padding: 5px 0px;
+  left: 10px;
+  top: 3px;
+  transform: rotate(-30deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.readmore{
+text-align:right;
+}
+.top {
+  margin-top:10px;
+}
+
+.price{
+font-family: fantasy;
+color: black;
+font-size:20px;
+margin-top:10px;
+border-bottom: dotted 3px #CC9966;
+text-align:center;
+}
+
+.about .title{
+font-family: fantasy;
+font-size:50px;
+}
+
+.contact-box{
+ text-align:center;
+}
+.product-image{
+    max-width: 100%;
+    border-radius: 50%;
+    background-position: center;
+
+}

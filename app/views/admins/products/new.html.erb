@@ -1,0 +1,23 @@
+<div class = "row admins products_new_main">
+<h4 class="Menu">商品新規登録</h4>
+  <%= form_for (@product), url: admins_products_path, method: :post do |f| %>
+     <%= render 'layouts/error_messages', model: f.object %>
+    <div class ="col-md-4 product_image">
+      <%= attachment_image_tag @product, :image, size: "300x300", format: 'jpeg', fallback: "no-data.jpg", size: "300x300" %>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="col-md-8 admins product_new_information">
+      <h4>商品名</h4>
+        <%= f.text_field :name, :placeholder => "商品名" %>
+      <h4>商品説明</h4>
+        <%= f.text_area :introduction, :placeholder => "商品説明" %>
+      <h4>ジャンル</h4>
+        <%= f.select :genre_id, Genre.all.map {|genre| [genre.genre_name, genre.id ] } %>
+      <h4>税抜価格</h4>
+        <%= f.text_field :price, :placeholder => "300" %> 円
+      <h4>販売ステータス</h4>
+        <%= f.select :status, { "販売中" => :true, "売切れ"=> :false } %><br><br>
+        <%= f.submit '新規登録' %><br><br>
+    </div>
+  <% end %>
+</div>

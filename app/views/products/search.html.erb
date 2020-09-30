@@ -1,0 +1,28 @@
+<h4 class="Menu">SEARCH　RESULT</h4>
+<div class="row">
+  <% if @products.present? %>
+    <h2>products search for " <%= params[:search] %> "</h2>
+      <% @products.each do |product| %>
+	  <tr>
+	    <div class="col-md-3">
+	      <td>
+	      	<%= link_to product_path(product) do %>
+	      	<%= attachment_image_tag product, :image, :fill, 100, 100, fallback: "no-data.jpg", size:"100x100" %><br>
+	        <%= product.name %>
+	        <% end %>
+		  </td><br>
+	      <td>
+	      	<% if product.status == false %>
+	          売切れ
+	      	<% else %>
+	      	  <%= product.price %>円(+税)
+	        <% end %>
+	      </td>
+	    </div>
+	  </tr>
+  	  <% end %>
+  <% else %>
+    <h2>products search for " <%= params[:search] %> "</h2>
+      ・該当の商品はありません
+<% end %>
+</div>

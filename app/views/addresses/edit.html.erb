@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+	<div class="col-lg-12">
+	  <h4 class="Menu">配送先編集</h4>
+	    <div class="row">
+	      <%= form_for (@address) do |f| %>
+		  <table class="table address">
+		  	<tr>
+		      <th><%= f.label :郵便番号, "郵便番号(ハイフンなし)"%></th>
+		      <td><%= f.text_field :zipcode %></td>
+			</tr>
+			<tr>
+		      <th><%= f.label :住所 %></th>
+		      <td><%= f.text_field :address %></td>
+			</tr>
+			<tr>
+		      <th><%= f.label :宛名 %></th>
+		      <td><%= f.text_field :ship_name %></td>
+			</tr>
+		      <td><%= f.submit "編集する" %></td>
+	      </table>
+	      <% end %>
+		</div>
+    </div>
+  </div>
+</div>

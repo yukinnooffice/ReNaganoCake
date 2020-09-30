@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="row">
+	    <div class="col-md-12">
+		    <h3 class="CART-ITEM" style="float:center;">CRAT ITEM</h3>
+		</div>
+		<div class="col-md-12">
+	        <table class="table table-bordered col-lg-12">
+	            <tr class="thead-light">
+	            	<th style="width:40%">商品名</th>
+	            	<th style="width:15%">単価（税込）</th>
+	            	<th style="width:15%">数量</th>
+	            	<th style="width:15%">小計</th>
+	            	<th style="width:15%"></th>
+	            </tr>
+	            <% @cart_items.each do |cart| %>
+	            <tr>
+	            	<td><%= attachment_image_tag cart.product, :image, size: "50x50", format: 'jpeg', fallback: "no-data.jpg", size: "50x50" , class: "rounded"%>
+	            	<%= cart.product.name %></td>
+	            	<td><%= (cart.product.tax_price).to_s(:delimited) %>円</td>
+
+	            	<td>
+	            		<%= form_for(cart, url:cart_item_path(cart)) do |f| %>
+	            		    <p class="text-right"><%= f.number_field :quantity, value: cart.quantity %>
+		                	<%= f.submit "変更", class: "btn btn-primary" %></p>
+	                	<% end %>
+	            	</td>
+	            	<td><%= (cart.product.tax_price * cart.quantity).to_s(:delimited) %>円</td>
+
+	            	<td class="text-right">
+	            		<%= link_to "削除する", cart_item_path(cart) ,method: :delete ,class: "btn btn-danger" %>
+	            	</td>
+	          	</tr>
+	          	<% end %>
+	        </table>
+	        <table class="table table-bordered col-md-4 float-right">
+	        	<tr class="thead-light">
+	          		<th style="width:55%">合計金額</th>
+	          		<td style="width:45%"><%= @total_price %>円</td>
+	        	</tr>
+	        </table>
+	         <div class="col-md-4 text-center">
+		        <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "pull-right btn btn-danger " %>
+		     </div>
+             <div class="col-md-4 text-center">
+             	<%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+             </div>
+	        <div class="col-md-4 text-right">
+	        	<% if @total_price > 1%>
+	              <%= link_to "情報入力に進む",new_order_path, class: "btn btn-success" %>
+	            <%end%>
+		    </div>
+	    </div>
+	</div>
+</div>

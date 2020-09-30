@@ -1,0 +1,53 @@
+  <div class="row">
+    <div class="col-offset-xs-1">
+  	  <div class="col-xs-11 admins customers_show_main">
+	  <h4 class="Menu"><%= @customer.last_name.to_s + @customer.first_name.to_s %>さんの会員詳細</h4>
+
+	  <table class="table customers-show">
+	  <tr>
+	  	<td>顧客ID</td>
+	  	<td><%= @customer.id %>
+  	      <% if @customer.customer_status %>
+  		    有効会員
+  	      <% else %>
+  		    無効会員
+  	      <% end %>
+      	</td>
+	  </tr>
+
+	  <tr>
+	  	<td>氏名</td>
+	  	<td><%= @customer.last_name %>  <%= @customer.first_name %></td>
+	  </tr>
+	  <tr>
+	  	<td>フリガナ</td>
+	  	<td><%= @customer.last_name_kana %>  <%= @customer.first_name_kana %></td>
+	  </tr>
+	  <tr>
+	  	<td>郵便番号</td>
+	  	<td><%= '〒' + @customer.zipcode %></td>
+	  </tr>
+	  <tr>
+	  	<td>住所</td>
+	  	<td><%= @customer.address %></td>
+	  </tr>
+	  <tr>
+	  	<td>電話番号</td>
+	  	<td><%= @customer.tel %></td>
+	  </tr>
+	  <tr>
+	  	<td>メールアドレス</td>
+	  	<td><%= @customer.email %></td>
+	  </tr>
+	  <tr>
+	  	<td><%= link_to "編集する", edit_admins_customer_path(@customer), class:"btn btn-primary"  %></td>
+
+	  	<!-- 注文履歴は該当のユーザーを見る　今はすべてのユーザー -->
+	  
+	  	<td><%= link_to "注文履歴一覧を見る", admins_order_items_path(customer_id: @customer), class:"btn btn-primary"  %></td>
+
+	  </tr>
+	  </table>
+	 </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div id="container">
+    <div id="theTarget">
+        <div class="image1">
+	      	<div class="main-visual-text" >
+				<p>WELCOME NAGANOCAKE</p>
+			</div>
+        </div>
+        <div class="image2">
+      	    <div class="main-visual-text" >
+			    <p>WELCOME NAGANOCAKE</p>
+		    </div>
+        </div>
+        <div class="image3">
+      	    <div class="main-visual-text" >
+			    <p>WELCOME NAGANOCAKE</p>
+		    </div>
+        </div>
+        <div class="image4">
+      	    <div class="main-visual-text" >
+			    <p>WELCOME NAGANOCAKE</p>
+		    </div>
+        </div>
+        <div class="image5">
+      	    <div class="main-visual-text" >
+			    <p>WELCOME NAGANOCAKE</p>
+		    </div>
+        </div>
+    </div>
+</div>
+<div class="row products" >
+	<div class="top-text-box">
+		<p>このサイトは、ケーキ販売のECサイトになります。会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。</p>
+	</div>
+	<h4 class="Menu">PICK UP MENU</h4>
+	<div class="col-md-2 genre-form">
+	    <%= render 'products/genres-search', genres: @genres %>
+    </div>
+    <div class="col-md-10">
+	    <% @recommendation.each do |product| %>
+		    <div class="col-md-3">
+	            <div class="products-img"align="center">
+					<%= link_to product_path(product) do %>
+						<%= attachment_image_tag product, :image, :fill, 200, 200, fallback: "no-data.jpg", size:"200x200", class: "img-rounded" %>
+						<p class="price top"><%= product.name.truncate(12, omission: '...') %></p>
+				        <p class="price"><%= "#{product.tax_price}円"%></p>
+				    <% end %>
+				</div>
+			</div>
+	    <% end %>
+    </div>
+</div>
+<div class="row readmore top">
+	<p><%= link_to "Read more▶️", products_path %></p>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3 class="main-titles Menu">SPESIAL THANKS</h3>
+		<p class="border-bottom"></p>
+		<p class="main-text">
+			数あるケーキショップの中から、ご閲覧いただきありがとうございます。<br>客様の体と心の健康を第一に考え、より自然な素材で添加物を極力使用せず、<br>
+			そしてどこよりもお値打ちでご提供し、<br>全てのお客様に愛されるお菓子屋でありたい・・・。<br>
+			それがの願いです。<br>
+			私達はこの想いを大切に、お菓子づくりに取り組んでいます。
+		</p>
+    </div>
+    <div class="col-lg-6">
+    	<img class="product-image" src="https://demo.tcd-theme.com/tcd029/wp-content/uploads/2015/11/about01.jpg" alt="" title="" style="max-width: 100%;">
+    </div>
+</div>
+<div class="row">
+	<div class="col-lg-6">
+    	<img class="product-image" src="https://demo.tcd-theme.com/tcd029/wp-content/uploads/2015/11/about02.jpg" alt="" title="" style="max-width: 100%;">
+    </div>
+	<div class="col-md-6">
+		<h3 class="subtitles Menu">SHOP INFOMATION</h3>
+		<p class="profile-text">
+			卵や牛乳、水、果物など、お菓子に必要な素材を、<br>
+			地元の契約農家や農場より直接仕入れ、<br>
+			その生産地でお菓子づくりを行う素材本位の工場システムを、<br>「ファームファクトリー」と呼んでいます。<br>
+			原材料を直接仕入れ、国内の自社工場で製造、<br>
+			全国のお店へダイレクトに配送するという、問屋を通さないこの画期的な構想は、<br>
+			当時の常識を覆す流通革命として昭和60年から始まりました。<br>
+			現在では、農家との素材共同開発や、<br>生産農家が見える安全・安心なお菓子づくりへと広がっています。<br>
+			おいしさとお値打ち価格、そして安全・安心が加わったNAGANOCAKEのお菓子。<br>
+			これからもファームファクトリー構想を礎に、お客様へ笑顔をお届けいたします。
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<h3 class="main-titles Menu">SAFETY</h3>
+		<p class="border-bottom"></p>
+		<p class="main-text">
+			NAGANOCAKEは、お客様の心と体の健康を考え、添加物を極力使用しない商品や<br>
+            糖質カット、アレルギー対応のお菓子づくりに取り組んでいます。<br>
+            糖質が気になり食べたくても食べられない方のために、<br>
+            食物繊維やマルチトール（還元麦芽糖）、ノンカロリー甘味料を使用したお菓子を完成させました。<br>
+            手間をかけて素材おいしさを引き出す製法で、<br>
+            添加物を使わない安全・安心なおいしいお菓子をお届けしています。
+		</p>
+    </div>
+    <div class="col-lg-6">
+    	<img class="product-image" src="https://demo.tcd-theme.com/tcd029/wp-content/uploads/2015/11/28.jpg" alt="" title="" style="max-width: 100%;">
+    </div>
+</div>
+<h3 class="main-titles Menu">OFFICIAL ACCOUNT</h3>
+<p class="border-bottom"></p>
+<div class="contact-contents clearfix">
+    <div class="contact-box">
+      <div class="col-lg-4">
+	    <p class="contact-subtitles">MAIL</p>
+	    <p class="mail"><u>GUNDUM@WHITE.com</u></p>
+	    <p class="contact-subtitles">Tell</p>
+	    <p class="tell"><u>090-4894-94949</u></p>
+	  </div>
+    </div>
+    <div class="contact-box">
+      <div class="col-lg-4">
+        <p class="contact-subtitles">SNS</p>
+        <i class="fab fa-facebook-f" style="font-size: 30px;"></i>
+        <i class="fab fa-twitter-square" style="font-size: 30px;"></i>
+        <i class="fab fa-instagram" style="font-size: 30px;"></i>
+      </div>
+    </div>
+    <div class="contact-box">
+    	<div class="col-lg-4">
+    		<p class="subtitles">GUNDUM TEAM <i class="fas fa-robot"></i></p>
+			<p class="skills-info">マッキー、みやちゃん、さのっち、まえちゃん</p>
+		</div>
+	</div>
+</div>
+
+

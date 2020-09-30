@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-offset-1">
+  	<div class="col-xs-11 admins order_items_index_main">
+  	  <h4 class="Menu">注文履歴一覧</h4><br>
+		<table class="table order-items-index">
+
+		<thead class="thead-light">
+		  <th>購入日時</th>
+		  <th>購入者</th>
+		  <th>注文個数</th>
+		  <th>注文ステータス</th>
+		</thead>
+
+		<tbody>
+		<% @orders.each do |order| %>
+		  <tr>
+		  	<td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admins_order_item_path(order)  %></td>
+		  	<td><%= order.addressee %></td>
+		  	<td><%= order.order_items.sum(:quantity) %></td>
+		  	<td><%= order.order_status %></td>
+		  </tr>
+		<% end %>
+		</tbody>
+
+		</table>
+  </div>
+</div>
+</div>
+<%= paginate @orders %>
+
+

@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+		<div class="title-box">
+			<h4 class="Menu">注文情報詳細</h4>
+		</div>
+
+		<%= form_with :model => @order, url:orders_path, method: :post, local: true  do |f| %>
+
+		<div class="col-xs-8">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @sum = 0 %>
+					<% @subtotal = 0 %>
+					<% @customer.cart_items.includes([:product]).each do |cart_item| %>
+						<tr>
+							<td><%= attachment_image_tag cart_item.product, :image, size: "50x50", format: 'jpeg', fallback: "no-data.jpg", size: "50x50" %> <%= cart_item.product.name %></td>
+
+							<td><%= cart_item.product.tax_price.to_s(:delimited) %>円</td>
+							<td><%= cart_item.quantity %></td>
+							<td><%= (@subtotal = cart_item.product.tax_price * cart_item.quantity).to_s(:delimited) %>円</td>
+						</tr>
+						<% @sum += @subtotal %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- 請求金額 -->
+		<div class="col-xs-4">
+			<table class="table table-bordered">
+				<tr>
+					<td>送料</td>
+					<td><%= @order.freight.to_s(:delimited, delimiter: ',') %>円</td>
+				</tr>
+				<tr>
+					<td>商品合計</td>
+					<td><%= @sum.to_s(:delimited, delimiter: ',') %>円</td>
+				</tr>
+				<tr>
+					<td>請求金額</td>
+					<td><%= (@sum + @order.freight).to_s(:delimited, delimiter: ',') %>円</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- 支払方法 -->
+		<div class="col-xs-12">
+			<h3>支払方法</h3><%= @order.how_to_pay %>
+		</div>
+
+		<!-- お届け先 -->
+		<div class="col-xs-12">
+			<h3>お届け先</h3>
+			<%= @order.zipcode %><%= @order.send_to_address %>
+			<%= @order.addressee %>
+		</div>
+
+		<%= f.hidden_field :how_to_pay, :value => @order.how_to_pay %>
+		<%= f.hidden_field :zipcode, :value => @order.zipcode %>
+		<%= f.hidden_field :send_to_address, :value => @order.send_to_address %>
+		<%= f.hidden_field :addressee, :value => @order.addressee %>
+		<%= f.hidden_field :freight, :value => @order.freight %>
+		<%= f.hidden_field :total_price, :value => @sum + @order.freight %>
+
+		<%= f.submit "注文を確定する", class: "btn btn-success col-xs-2 col-xs-offset-5" %>
+
+		<div class="footer-margen col-xs-12"></div>
+
+		<% end %>
+	</div>
+</div>
