@@ -2,7 +2,7 @@
 
 # NAGANO CAKE / ながのCAKE
 初めてのチーム開発で製作したECサイトです。
-
+![image](https://user-images.githubusercontent.com/68215378/94673439-b2af4f80-0351-11eb-8555-c5595cf2c352.png)
 <br>
 <br>
 ## このアプリケーションについて
